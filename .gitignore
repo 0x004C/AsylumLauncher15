@@ -1,0 +1,7 @@
+# Ignored files
+
+Asylum-WebServer/*
+Asylum-libs/Asylum-libs/bin/*
+Asylum-libs/Asylum-libs/obj/*
+AsylumLauncherWinForms/AsylumLauncher/bin/*
+AsylumLauncherWinForms/AsylumLauncher/obj/*
