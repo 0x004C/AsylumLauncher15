@@ -7,6 +7,7 @@ namespace AsylumLibs
 {
     public class Queries
     {
+        public static Query LOCK = new Query("lock");
         public static Query LAUNCHER_VERSION = new Query("launcher_version");
         public static Query ASYLUM_VERSION = new Query("asylum_version");
         public static Query ACCOUNT = new Query("account");

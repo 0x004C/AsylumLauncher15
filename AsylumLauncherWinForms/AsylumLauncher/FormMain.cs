@@ -1,4 +1,4 @@
-﻿#define HAX
+﻿//#define HAX
 
 using System;
 using System.Collections.Generic;
@@ -223,15 +223,23 @@ namespace AsylumLauncher
 
         private bool Login(string accountName, string password, out Account account)
         {
-            password = Helpers.sha256_hash(accountName.ToLower() + "asyLum" + password);
             try
             {
                 WebClient webClient = new WebClient();
-                string url = String.Format("http://{0}/Query.aspx?key={1}&paras={2};{3}", Settings.IPAddress, Queries.ACCOUNT.Key, accountName, password);
-
+                string url = String.Format("http://{0}/Query.aspx?key={1}", Settings.IPAddress, Queries.LOCK.Key);
                 Log.Info("Performing HTTP-GET to ({0})", url);
 
                 string html = webClient.DownloadString(url);
+                html = html.Substring(0, html.IndexOf("\r\n"));
+
+                password = Helpers.sha256_hash(accountName.ToLower() + "asyLum" + password);
+                password = Helpers.sha256_hash(html + password);
+
+                // 
+                url = String.Format("http://{0}/Query.aspx?key={1}&paras={2};{3};{4}", Settings.IPAddress, Queries.ACCOUNT.Key, accountName, password, html);
+                Log.Info("Performing HTTP-GET to ({0})", url);
+
+                html = webClient.DownloadString(url);
                 html = html.Substring(0, html.IndexOf("\r\n"));
                 account = Account.Deserialize(html);
                 return true;

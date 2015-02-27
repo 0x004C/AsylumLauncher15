@@ -50,24 +50,6 @@ namespace AsylumLauncher
             }
         }
 
-        public static string IPAddress
-        {
-            get
-            {
-                string s = ReadValue("Server", "IP");
-                if (String.IsNullOrEmpty(s))
-                {
-                    s = "asylum.karell.fi:500";
-                    WriteValue("Server", "IP", s);
-                }
-                return s;
-            }
-            set
-            {
-                WriteValue("Server", "IP", value);
-            }
-        }
-
         public static bool UseJavaDebug
         {
             get
@@ -83,6 +65,42 @@ namespace AsylumLauncher
             set
             {
                 WriteValue("Java", "UseDebug", value ? "True" : "False");
+            }
+        }
+
+        public static string IPAddress
+        {
+            get
+            {
+                string s = ReadValue("Asylum", "IP");
+                if (String.IsNullOrEmpty(s))
+                {
+                    s = "asylum.karell.fi:500";
+                    WriteValue("Asylum", "IP", s);
+                }
+                return s;
+            }
+            set
+            {
+                WriteValue("Asylum", "IP", value);
+            }
+        }
+
+        public static string PackVersion
+        {
+            get
+            {
+                string s = ReadValue("Asylum", "PackVersion");
+                if (String.IsNullOrEmpty(s))
+                {
+                    s = "0";
+                    WriteValue("Asylum", "PackVersion", s);
+                }
+                return s;
+            }
+            set
+            {
+                WriteValue("Asylum", "PackVersion", value);
             }
         }
 
