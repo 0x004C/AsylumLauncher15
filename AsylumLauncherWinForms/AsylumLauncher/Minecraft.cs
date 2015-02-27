@@ -14,7 +14,8 @@ namespace AsylumLauncher
         {
             if (!Directory.Exists(@"data\libs"))
             {
-
+                AsylumLibs.Logging.Log.Error("Asylum installation is corrupted!");
+                return;
             }
 
             string[] aLibs = Directory.GetFiles(@"data\libs", "*.jar", System.IO.SearchOption.AllDirectories);

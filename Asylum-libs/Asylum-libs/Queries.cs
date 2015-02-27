@@ -16,7 +16,6 @@ namespace AsylumLibs
     public class Query
     {
         public string Key = "";
-        public string[] Parameters = null;
 
         public Query(string key)
         {
