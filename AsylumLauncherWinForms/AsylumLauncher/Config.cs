@@ -38,7 +38,7 @@ namespace AsylumLauncher
                 if (isJava)
                     tbJavaPath.Text = folderBrowserDialog.SelectedPath;
                 else
-                    AsylumLibs.Logging.Log.Error("Javaa ei löydetty kansiosta..");
+                    AsylumLibs.Logging.Log.Error("No java found.");
             }
         }
 
@@ -49,6 +49,7 @@ namespace AsylumLauncher
             tbJavaPath.Text = Settings.JavaPath;
             tbLaunchOptions.Text = Settings.JavaOptions;
             tbIPAddress.Text = Settings.IPAddress;
+            cbUseJavaDebug.Checked = Settings.UseJavaDebug;
         }
 
         private void tbSave_Click(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace AsylumLauncher
             Settings.JavaOptions = tbLaunchOptions.Text;
             Settings.JavaPath = tbJavaPath.Text;
             Settings.IPAddress = tbIPAddress.Text;
+            Settings.UseJavaDebug = cbUseJavaDebug.Checked;
             this.Close();
         }
 

@@ -68,6 +68,24 @@ namespace AsylumLauncher
             }
         }
 
+        public static bool UseJavaDebug
+        {
+            get
+            {
+                string s = ReadValue("Java", "UseDebug");
+                if (String.IsNullOrEmpty(s))
+                {
+                    s = "True";
+                    WriteValue("Java", "UseDebug", s);
+                }
+                return s.ToLower() == "true" ? true : false;
+            }
+            set
+            {
+                WriteValue("Java", "UseDebug", value ? "True" : "False");
+            }
+        }
+
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section,
             string key, string val, string filePath);

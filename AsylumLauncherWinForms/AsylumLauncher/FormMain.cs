@@ -1,4 +1,4 @@
-﻿//#define HAX
+﻿#define HAX
 
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,6 @@ namespace AsylumLauncher
             HandleCommandLineArgs();
 #if DEBUG
             OutputConsole.Enable();
-            //Hax = true; // TODO DEBUG HUOM 0.0.0.2
 #endif
             Log.Info("AsylumLauncher v{0}", Version);
             Log.Info("LaunchInfo: {0}", String.Join(" ", Environment.GetCommandLineArgs()));
@@ -187,7 +186,7 @@ namespace AsylumLauncher
 
                 if (account != null)
                 {
-                    Minecraft.Launch(Settings.JavaPath, Settings.JavaOptions, account.IGN, account.Token, true);
+                    Minecraft.Launch(Settings.JavaPath, Settings.JavaOptions, account.IGN, account.Token, Settings.UseJavaDebug);
                 }
             }
             else
@@ -209,7 +208,7 @@ namespace AsylumLauncher
                 {
                     if (account != null)
                     {
-                        Minecraft.Launch(Settings.JavaPath, Settings.JavaOptions, account.IGN, account.Token, true);
+                        Minecraft.Launch(Settings.JavaPath, Settings.JavaOptions, account.IGN, account.Token, Settings.UseJavaDebug);
                     }
                     else
                         Log.Warn("Invalid username or password");
