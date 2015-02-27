@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Net;
 using AsylumLibs;
 using AsylumLibs.Logging;
+using System.IO;
 
 namespace AsylumLauncher
 {
@@ -27,6 +28,9 @@ namespace AsylumLauncher
         public FormMain()
         {
             InitializeComponent();
+
+            SelfInstall();
+
             Settings.Path = AppDomain.CurrentDomain.BaseDirectory + "asylum\\";
 
             HandleCommandLineArgs();
@@ -35,6 +39,18 @@ namespace AsylumLauncher
 #endif
             Log.Info("AsylumLauncher v{0}", Version);
             Log.Info("LaunchInfo: {0}", String.Join(" ", Environment.GetCommandLineArgs()));
+        }
+
+        private void SelfInstall()
+        {
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "asylum\\"))
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "asylum\\");
+
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + "asylum\\LaunchInfo"))
+                File.WriteAllText(
+                    AppDomain.CurrentDomain.BaseDirectory + "asylum\\LaunchInfo",
+                    @"net.minecraft.launchwrapper.Launch --tweakClass cpw.mods.fml.common.launcher.FMLTweaker --gameDir data --assetsDir data\assets --assetIndex 1.7.10 --userProperties {}");
+
         }
 
         private void HandleCommandLineArgs()
