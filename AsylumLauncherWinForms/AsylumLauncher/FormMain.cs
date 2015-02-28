@@ -216,6 +216,13 @@ namespace AsylumLauncher
         {
             Log.Out("btnLogin_Click");
 
+            /*
+            //Testing Downloader..
+            DownloadManager.Downloader d = new DownloadManager.Downloader(@"http://mirror.internode.on.net/pub/test/10meg.test", "file.test", pbarStatus);
+            d.AttachStatusLabel(lblStatus);
+            d.Start();
+            */
+
             if (!string.IsNullOrEmpty(tbAccount.Text) && !string.IsNullOrEmpty(tbPassword.Text))
             {
                 Account account = null;

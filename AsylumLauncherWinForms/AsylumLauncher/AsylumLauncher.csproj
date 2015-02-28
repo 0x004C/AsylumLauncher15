@@ -57,6 +57,7 @@
     <Compile Include="Config.Designer.cs">
       <DependentUpon>Config.cs</DependentUpon>
     </Compile>
+    <Compile Include="DownloadManager.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
